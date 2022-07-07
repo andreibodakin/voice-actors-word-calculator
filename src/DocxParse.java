@@ -9,13 +9,12 @@ import javax.xml.stream.events.*;
 import javax.xml.namespace.QName;
 
 public class DocxParse {
+    public static final String FILE_NAME = "Дьявольский судья 1.13.docx";
 
     public static void main(String args[]) throws Exception {
 
         Path currentRelativePath1 = Paths.get("");
-//        String strFile = currentRelativePath1.toAbsolutePath().toString() + "/files/" + "1 time.docx";
-//        String strFile = currentRelativePath1.toAbsolutePath().toString() + "/files/" + "real.docx";
-        String strFile = currentRelativePath1.toAbsolutePath().toString() + "/files/" + "Любовь. Разум. Месть. 1.5.docx";
+        String strFile = currentRelativePath1.toAbsolutePath().toString() + "/files/" + FILE_NAME;
 
         Path source = Paths.get(strFile);
 
