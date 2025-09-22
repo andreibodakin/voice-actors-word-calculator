@@ -1,57 +1,56 @@
+import java.util.Objects;
 
+/**
+ * Модель персонажа из сценария.
+ * Хранит имя и общее количество произнесённых слов.
+ */
 public class MovieCharacter {
-    String name;
-    int words;
+    private String name;
+    private int words;
 
-    MovieCharacter() {
-        this.name = null;
+    /**
+     * Создаёт персонажа с именем и нулевым счётчиком слов.
+     */
+    public MovieCharacter(String name) {
+        this.name = Objects.requireNonNull(name, "Имя персонажа не может быть null");
         this.words = 0;
     }
 
-    MovieCharacter(String name) {
-        this.name = name;
-        this.words = 0;
+    /**
+     * Добавляет указанное количество слов к счётчику персонажа.
+     */
+    public void addWords(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("Количество слов не может быть отрицательным");
+        }
+        this.words += count;
     }
 
-    MovieCharacter(String name, int words) {
-        this.name = name;
-        this.words = words;
+    // Геттеры
+
+    public String getName() {
+        return name;
     }
+
+    public int getWords() {
+        return words;
+    }
+
+    // equals & hashCode — только для сравнения по имени
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        MovieCharacter other = (MovieCharacter) obj;
-        if (name.equals(other.name)) {
-            this.words += other.words;
-            return true;
-        }
-        return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        MovieCharacter that = (MovieCharacter) obj;
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + name.hashCode();
-//        result = prime * result + words;
-        return result;
+        return Objects.hash(name);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getWords() {
-        return this.words;
-    }
-
-    public void setWords(int words) {
-        this.words = words;
-    }
-}
+    @Override
+    public String toString() {
+        return name
